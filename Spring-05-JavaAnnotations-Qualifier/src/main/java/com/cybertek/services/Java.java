@@ -4,35 +4,24 @@ import com.cybertek.interfaces.Course;
 import com.cybertek.interfaces.ExtraSessions;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Java implements Course {
 
-    //Field Injection
-    @Autowired
+    //@Autowired
+    //@Qualifier("officeHours")
     private ExtraSessions extraSessions;
-/*
-    //Constructor Injection
-    @Autowired
-    public Java(OfficeHours officeHours) {
-        this.officeHours = officeHours;
+
+    public Java(@Qualifier("officeHours") ExtraSessions extraSessions) {
+        this.extraSessions = extraSessions;
     }
 
- */
-
-/*
-    //Setter Injection
-    @Autowired
-    public void setOfficeHours(OfficeHours officeHours) {
-        this.officeHours = officeHours;
-    }
-
- */
 
     @Override
     public void getTeachingHours() {
-        System.out.println("Weekly teaching hours : " + (30 + extraSessions.getHours()));
+        System.out.println("Weekly teaching hours : " + (20 + extraSessions.getHours()));
     }
 
 }
